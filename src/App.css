@@ -1,0 +1,23 @@
+.pendu {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: auto;
+  user-select: none;
+}
+
+.hiddenWord {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: auto;
+  user-select: none;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  width: 700px;
+  margin: auto;
+  user-select: none;
+}

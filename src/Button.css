@@ -1,0 +1,56 @@
+.pendu > .letter {
+  font-size: 2em;
+  flex: 1 1 calc(100% / 14 - 0.4em);
+  outline: 0.08em solid silver;
+  margin: 0.2em;
+  display: flex;
+  cursor: default;
+}
+
+.pendu > .letter.hidden {
+  background: silver;
+}
+
+.pendu > .letter.justMatched,
+.pendu > .letter.justMismatched {
+  outline: 0.1em solid green;
+}
+.pendu > .letter.justMismatched {
+  outline-color: red;
+}
+
+.pendu > .letter.visible {
+  cursor: not-allowed;
+}
+
+.pendu > .letter > .symbol {
+  margin: auto;
+}
+
+
+
+.hiddenWord > .letter {
+  font-size: 2em;
+  flex: 0 1 calc(100% / 14 - 0.4em);
+  outline: 0.08em solid silver;
+  margin: 0.2em;
+  display: flex;
+  cursor: default;
+}
+
+.hiddenWord > .letter.hidden {
+  background: silver;
+}
+
+.hiddenWord > .letter.justMatched,
+.hiddenWord > .letter.justMismatched {
+  outline: 0.1em solid green;
+}
+
+.hiddenWord > .letter.visible {
+  cursor: not-allowed;
+}
+
+.hiddenWord > .letter > .symbol {
+  margin: auto;
+}
