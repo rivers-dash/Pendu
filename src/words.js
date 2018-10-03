@@ -47,6 +47,10 @@ let words= [
 		value: 'Allumer le feu',
 		hint: 'Musique',
 	},
+	{
+		value: 'Charles Aznavour',
+		hint: 'Musique',
+	},
 ]
 
 export default words
