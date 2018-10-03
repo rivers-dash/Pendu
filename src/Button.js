@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const HIDDEN_SYMBOL = '_'
 
 const Button = ({ letter, feedback, index, onClick, clicable }) => (
-	<div className={`letter ${feedback} ${clicable}`} onClick={() => onClick(letter)}>
+	<div className={`letter ${feedback} ${clicable}`} onClick={() => onClick(letter, index)}>
 		<span className="symbol">
 			{feedback === 'hidden' ? HIDDEN_SYMBOL : letter}
 		</span>
@@ -18,8 +18,7 @@ Button.propTypes = {
 	feedback: PropTypes.oneOf([
 		'visible',
 		'hidden',
-		'justMatched',
-		'justMismatched',
+		'used',
 	]).isRequired,
 	clicable: PropTypes.PropTypes.oneOf([
 		'clicable',

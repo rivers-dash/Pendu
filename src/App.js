@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
 import Button from './Button.js';
+import words from './words.js'
+import letters from './letters.js'
+import './App.css';
+
 
 const LINE = 14
-const WORD = 'great place to work'
+const WORD = words[Math.floor(Math.random() * Math.floor(words.length))]
 const LETTERS = (['A','Z','E','R','T','Y','U','I','O','P','Q','S','D','F','G','H','J','K','L','M','W','X','C','V','B','N'])
 
 
@@ -77,8 +80,9 @@ class App extends Component {
 		return lines
 	}
 
-	handleLetterClick(letter) {
+	handleLetterClick(letter, index) {
 		const { strikes } = this.state
+		letters[index].feedback = 'used'
 		this.setState({ strikes: strikes + 1})
 		this.showLetter(letter)
 	}
@@ -136,7 +140,9 @@ class App extends Component {
 				<div className="subtitle">
 					YOU WON
 					<br></br>
-					Vous deviez deviner : {WORD.toUpperCase()}
+					Vous deviez deviner
+					<br></br>
+					{WORD.toUpperCase()}
 					<br></br>
 					🏆
 				</div>
@@ -155,11 +161,11 @@ class App extends Component {
 					</div>
 
 					<div className="pendu">
-						{LETTERS.map((letter, index) => (
+						{letters.map((letter, index) => (
 							<Button
 								key={index}
-								letter={letter}
-								feedback='visible'
+								letter={letter.value}
+								feedback={letter.feedback}
 								index={index}
 								clicable={'clicable'}
 								onClick={this.handleLetterClick}
