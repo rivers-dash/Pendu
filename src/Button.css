@@ -8,12 +8,12 @@
 }
 
 .pendu > .letter.hidden {
-  background: silver;
+  background: #1b1c45;
 }
 
 .pendu > .letter.used {
   color: #999999;
-	background-color: silver;
+	background-color: #1b1c45;
 }
 
 .pendu > .letter > .symbol {
@@ -32,7 +32,8 @@
 }
 
 .hiddenWord > .letter.hidden {
-  background: silver;
+	color: white;
+  background: #1b1c45;
 }
 
 .hiddenWord > .letter.visible {

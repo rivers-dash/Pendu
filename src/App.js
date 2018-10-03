@@ -154,7 +154,7 @@ class App extends Component {
 					<div className="subtitle">
 						YOU WON
 						<br></br>
-						Vous deviez deviner
+						Vous avez deviner
 						<br></br><br></br>
 						{hiddenWord.word.value.toUpperCase()}
 						<br></br><br></br>
@@ -178,8 +178,10 @@ class App extends Component {
 		while (life>0) {
 			return (
 				<div>
-					<div className="subtitle">
-						Nombre d'essais : {strikes}
+					<div className="Bar">
+						<div className='hint'>
+							🏹  {strikes}
+						</div>
 					</div>
 
 					<div className="pendu">
@@ -245,12 +247,13 @@ class App extends Component {
 		console.log(hiddenWord)
     return (
 			<div className="pendu">
-				<div className="hint">
-					💡 {hiddenWord.word.hint}
-				</div>
-
-				<div className="life">
-					{this.heartCanvas()}
+				<div className="Bar">
+					<div className="hint">
+						💡 {hiddenWord.word.hint}
+					</div>
+					<div className="life">
+						{this.heartCanvas()}
+					</div>
 				</div>
 
 				<div className="hiddenWordContainer">
