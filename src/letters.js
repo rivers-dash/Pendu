@@ -1,4 +1,4 @@
-let letters = [
+let Letters = [
 	{
 		value: 'A',
 		feedback: 'visible'
@@ -105,4 +105,4 @@ let letters = [
 	},
 ]
 
-export default letters
+export default Letters

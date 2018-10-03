@@ -6,6 +6,10 @@
   user-select: none;
 }
 
+.hiddenWordContainer {
+margin: 40px 0;
+}
+
 .hiddenWord {
   display: flex;
   flex-wrap: wrap;
@@ -41,4 +45,28 @@
   user-select: none;
 	justify-content: center;
 	text-align: center;
+}
+
+.endGame {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin: auto;
+	padding: 30px 0;
+}
+
+.hint{
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 18px;
+	margin: 10px 0;
+	padding: 5px 0;
+	flex-grow: 4;
+}
+
+.life {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 10px 0;
+	padding: 5px 0;
 }

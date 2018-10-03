@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Button from './Button.js';
 import words from './words.js'
-import letters from './letters.js'
+import Letters from './letters.js'
 import './App.css';
 
 
 const LINE = 14
 const WORD = words[Math.floor(Math.random() * Math.floor(words.length))]
-const LETTERS = (['A','Z','E','R','T','Y','U','I','O','P','Q','S','D','F','G','H','J','K','L','M','W','X','C','V','B','N'])
 
 
 class App extends Component {
@@ -15,6 +14,7 @@ class App extends Component {
 		hiddenWord: this.generateWord(),
 		strikes: 0,
 		life: 7,
+		letters: Letters,
 	}
 
 	constructor(props){
@@ -22,11 +22,13 @@ class App extends Component {
 		this.generateWord = this.generateWord.bind(this)
 		this.handleLetterClick = this.handleLetterClick.bind(this)
 		this.showLetter = this.showLetter.bind(this)
+		this.reset = this.reset.bind(this)
 	}
 
 	generateWord() {
-		let word = WORD.toUpperCase()
-		let size = WORD.length
+		const WORD = words[Math.floor(Math.random() * Math.floor(words.length))]
+		let word = WORD.value.toUpperCase()
+		let size = WORD.value.length
 		let v1 = []
 		let spaceIndex
 		let hiddenWord = []
@@ -77,13 +79,23 @@ class App extends Component {
 			lines.push(hiddenWord)
 		})
 
-		return lines
+		let temp = {
+			lines: lines,
+			word: {
+				value: WORD.value,
+				hint: WORD.hint,
+			}
+		}
+
+		return temp
 	}
 
 	handleLetterClick(letter, index) {
-		const { strikes } = this.state
-		letters[index].feedback = 'used'
-		this.setState({ strikes: strikes + 1})
+		const { strikes, letters } = this.state
+		let temp = [...letters]
+		temp[index].feedback = 'used'
+		// letters[index].feedback = 'used'
+		this.setState({ strikes: strikes + 1, letters: temp, })
 		this.showLetter(letter)
 	}
 
@@ -91,11 +103,11 @@ class App extends Component {
 		const { hiddenWord } = this.state
 		let hit = false
 
-		for (var i=0; i<hiddenWord.length; i++){
-			for (var j=0; j<hiddenWord[i].length; j++){
-				if (hiddenWord[i][j].value === letter) {
-					let temp = [...hiddenWord]
-					temp[i][j].feedback = 'visible'
+		for (var i=0; i<hiddenWord.lines.length; i++){
+			for (var j=0; j<hiddenWord.lines[i].length; j++){
+				if (hiddenWord.lines[i][j].value === letter) {
+					let temp = {...hiddenWord}
+					temp.lines[i][j].feedback = 'visible'
 					this.setState({ hiddenWord: temp, })
 					hit = true
 				}
@@ -125,10 +137,10 @@ class App extends Component {
 	}
 
 	score() {
-		const { hiddenWord, strikes, life} = this.state
+		const { hiddenWord, strikes, life, letters} = this.state
 
 		let win = true
-		hiddenWord.forEach(function(line) {
+		hiddenWord.lines.forEach(function(line) {
 			line.forEach(function(letter) {
 				if (letter.feedback === 'hidden')
 					win = false
@@ -137,14 +149,28 @@ class App extends Component {
 
 		if (win) {
 			return (
-				<div className="subtitle">
-					YOU WON
-					<br></br>
-					Vous deviez deviner
-					<br></br>
-					{WORD.toUpperCase()}
-					<br></br>
-					🏆
+				<div className="endGame">
+
+					<div className="subtitle">
+						YOU WON
+						<br></br>
+						Vous deviez deviner
+						<br></br><br></br>
+						{hiddenWord.word.value.toUpperCase()}
+						<br></br><br></br>
+						🏆
+						</div>
+
+						<div className="subtitle">
+							<Button
+								letter='🔄'
+								feedback='visible'
+								index={0}
+								clicable={'clicable'}
+								onClick={this.reset}
+							/>
+						</div>
+
 				</div>
 			)
 		}
@@ -154,10 +180,6 @@ class App extends Component {
 				<div>
 					<div className="subtitle">
 						Nombre d'essais : {strikes}
-						<br></br>
-						Vies restantes : {life}
-						<br></br>
-						{this.heartCanvas()}
 					</div>
 
 					<div className="pendu">
@@ -178,40 +200,75 @@ class App extends Component {
 		}
 
 		return (
-			<div className="subtitle">
-				Nombre d'essais : {strikes}
-				<br></br>
-				Vous avez perdu
-				<br></br>
-				🐸
+			<div className="endGame">
+				<div className="subtitle">
+					Nombre d'essais : {strikes}
+					<br></br>
+					Vous avez perdu
+					<br></br>
+					🐸
+					<br></br>
+				</div>
+
+				<div className="subtitle">
+					<Button
+						letter='🔄'
+						feedback='visible'
+						index={0}
+						clicable={'clicable'}
+						onClick={this.reset}
+					/>
+				</div>
+				<div className="subtitle">
+					Rejouer
+				</div>
 			</div>
 		)
 	}
 
+	reset() {
+		Letters.forEach(function(letter) {
+			letter.feedback = 'visible'
+		})
+
+		this.setState({
+			hiddenWord: this.generateWord(),
+			strikes: 0,
+			life: 7,
+			letters: Letters,
+		})
+	}
 
 
   render() {
-		const { hiddenWord } = this.state
+		const { hiddenWord, strikes, life } = this.state
+		console.log(hiddenWord)
     return (
 			<div className="pendu">
-				<div className="title">
-					Jouer au Pendu avec ReactJs
+				<div className="hint">
+					💡 {hiddenWord.word.hint}
 				</div>
 
-				<div className="hiddenWord">
-					{hiddenWord.map((line, index) => (
-						<div className="hiddenWord" key={index}>
-							{line.map((letter, index) => (
-								<Button
-									key={index}
-									letter={letter.value}
-									feedback={letter.feedback}
-									index={letter.index}
-									clicable={'unclicable'}
-								/>
-								))}
-						</div>
-						))}
+				<div className="life">
+					{this.heartCanvas()}
+				</div>
+
+				<div className="hiddenWordContainer">
+					<div className="hiddenWord">
+						{hiddenWord.lines.map((line, index) => (
+							<div className="hiddenWord" key={index}>
+								{line.map((letter, index) => (
+									<Button
+										key={index}
+										letter={letter.value}
+										feedback={letter.feedback}
+										index={letter.index}
+										clicable={'unclicable'}
+									/>
+									))}
+							</div>
+							))}
+					</div>
 				</div>
 
 				{this.score()}

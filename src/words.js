@@ -1,14 +1,52 @@
 let words= [
-	'great place to work',
-	'disclosure',
-	'Nicolas Hullot',
-	'Emanuel Macron',
-	'the store under the bridge',
-	'the queen of england',
-	'He ran out of money so he had to stop playing poker',
-	'I hear that Nancy is very pretty',
-	'Mary plays the piano',
-	'this is a voodoo doll',
+	{
+		value: 'great place to work',
+		hint: 'Expression',
+	},
+	{
+		value: 'disclosure',
+		hint: 'Music',
+	},
+	{
+		value: 'Nicolas Hullot',
+		hint: 'Politics',
+	},
+	{
+		value: 'Emanuel Macron',
+		hint: 'Politics',
+	},
+	{
+		value: 'the store under the bridge',
+		hint: 'Expression',
+	},
+	{
+		value: 'the queen of england',
+		hint: 'Expression',
+	},
+	{
+		value: 'He ran out of money so he had to stop playing poker',
+		hint: 'Expression',
+	},
+	{
+		value: 'I hear that Nancy is very pretty',
+		hint: 'Expression',
+	},
+	{
+		value: 'Mary plays the piano',
+		hint: 'Expression',
+	},
+	{
+		value: 'this is a voodoo doll',
+		hint: 'Expression',
+	},
+	{
+		value: 'tel est pris qui croyait prendre',
+		hint: 'Proverbe',
+	},
+	{
+		value: 'Allumer le feu',
+		hint: 'Musique',
+	},
 ]
 
 export default words
