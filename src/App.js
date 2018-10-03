@@ -3,19 +3,27 @@ import './App.css';
 import Button from './Button.js';
 
 const LINE = 14
-const WORD = 'permutation THE WORLD SHOULD BE A BETTER PLACE'
+const WORD = 'great place to work'
 const LETTERS = (['A','Z','E','R','T','Y','U','I','O','P','Q','S','D','F','G','H','J','K','L','M','W','X','C','V','B','N'])
 
 
 class App extends Component {
 	state = {
-		word: WORD.toUpperCase(),
-		size: WORD.length,
-		hiddenWord: '',
+		hiddenWord: this.generateWord(),
+		strikes: 0,
+		life: 7,
+	}
+
+	constructor(props){
+		super(props)
+		this.generateWord = this.generateWord.bind(this)
+		this.handleLetterClick = this.handleLetterClick.bind(this)
+		this.showLetter = this.showLetter.bind(this)
 	}
 
 	generateWord() {
-		let { word, size } = this.state
+		let word = WORD.toUpperCase()
+		let size = WORD.length
 		let v1 = []
 		let spaceIndex
 		let hiddenWord = []
@@ -69,42 +77,139 @@ class App extends Component {
 		return lines
 	}
 
+	handleLetterClick(letter) {
+		const { strikes } = this.state
+		this.setState({ strikes: strikes + 1})
+		this.showLetter(letter)
+	}
+
+	showLetter(letter) {
+		const { hiddenWord } = this.state
+		let hit = false
+
+		for (var i=0; i<hiddenWord.length; i++){
+			for (var j=0; j<hiddenWord[i].length; j++){
+				if (hiddenWord[i][j].value === letter) {
+					let temp = [...hiddenWord]
+					temp[i][j].feedback = 'visible'
+					this.setState({ hiddenWord: temp, })
+					hit = true
+				}
+			}
+		}
+		this.lifeProcess(hit)
+	}
+
+	lifeProcess(hit) {
+		const { life } = this.state
+		if (!hit)
+			this.setState({ life: life-1})
+	}
+
+	heartCanvas() {
+		const { life } = this.state
+		let lifescore = ''
+
+		for (var i=0; i<life; i++) {
+			lifescore = lifescore.concat('❤️ ')
+		}
+		while (lifescore.length<21){
+			lifescore = lifescore.concat('💔 ')
+		}
+
+		return lifescore
+	}
+
+	score() {
+		const { hiddenWord, strikes, life} = this.state
+
+		let win = true
+		hiddenWord.forEach(function(line) {
+			line.forEach(function(letter) {
+				if (letter.feedback === 'hidden')
+					win = false
+			})
+		})
+
+		if (win) {
+			return (
+				<div className="subtitle">
+					YOU WON
+					<br></br>
+					Vous deviez deviner : {WORD.toUpperCase()}
+					<br></br>
+					🏆
+				</div>
+			)
+		}
+
+		while (life>0) {
+			return (
+				<div>
+					<div className="subtitle">
+						Nombre d'essais : {strikes}
+						<br></br>
+						Vies restantes : {life}
+						<br></br>
+						{this.heartCanvas()}
+					</div>
+
+					<div className="pendu">
+						{LETTERS.map((letter, index) => (
+							<Button
+								key={index}
+								letter={letter}
+								feedback='visible'
+								index={index}
+								clicable={'clicable'}
+								onClick={this.handleLetterClick}
+							/>
+						))}
+					</div>
+
+				</div>
+			)
+		}
+
+		return (
+			<div className="subtitle">
+				Nombre d'essais : {strikes}
+				<br></br>
+				Vous avez perdu
+				<br></br>
+				🐸
+			</div>
+		)
+	}
+
+
+
   render() {
+		const { hiddenWord } = this.state
     return (
 			<div className="pendu">
+				<div className="title">
+					Jouer au Pendu avec ReactJs
+				</div>
 
 				<div className="hiddenWord">
-
-					{
-						this.generateWord().map((line) => (
-							<div className="hiddenWord">
-								{
-									line.map((letter, index) => (
-										<Button
-											key={index}
-											letter={letter.value}
-											feedback={letter.feedback}
-											index={letter.index}
-										/>
-
-									))
-								}
-							</div>
-						))
-					}
-
+					{hiddenWord.map((line, index) => (
+						<div className="hiddenWord" key={index}>
+							{line.map((letter, index) => (
+								<Button
+									key={index}
+									letter={letter.value}
+									feedback={letter.feedback}
+									index={letter.index}
+									clicable={'unclicable'}
+								/>
+								))}
+						</div>
+						))}
 				</div>
 
-				<div className="pendu">
-					{LETTERS.map((letter, index) => (
-						<Button
-							key={index}
-							letter={letter}
-							feedback='visible'
-							index={index}
-						/>
-					))}
-				</div>
+				{this.score()}
+
 
       </div>
   	)

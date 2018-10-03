@@ -54,3 +54,7 @@
 .hiddenWord > .letter > .symbol {
   margin: auto;
 }
+
+.hiddenWord > .letter.unclicable {
+  pointer-events: none;
+}

@@ -21,3 +21,24 @@
   margin: auto;
   user-select: none;
 }
+
+.title {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 32px;
+  margin: auto;
+	padding: 30px 0;
+  user-select: none;
+	justify-content: center;
+}
+
+.subtitle {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 32px;
+  margin: auto;
+	padding: 30px 0;
+  user-select: none;
+	justify-content: center;
+	text-align: center;
+}
