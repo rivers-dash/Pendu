@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './play.css'
 
 import Pad from '../../components/pad/pad'
+import Hidden from '../../components/hidden/hidden'
 
 import { FaMale } from 'react-icons/fa'
 
@@ -11,8 +12,8 @@ class Play extends Component {
 
   render() {
     return(
-			<div className='row justify-content-center'>
-				This is play
+			<div className='col justify-content-center'>
+				<Hidden/>
 				<Pad/>
 			</div>
 		)

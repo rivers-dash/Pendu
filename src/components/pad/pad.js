@@ -12,12 +12,8 @@ class Pad extends Component {
 			<div id="container">
 				<div className="a">
 				{Letters.map((letter, index) => (
-					<Button
-						key= {index}
-						letter= {letter}
-					/>
-					))
-				}
+					<Button key= {index} letter= {letter} />
+					))}
 			</div>
 			</div>
 		)
