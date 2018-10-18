@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import './game.css'
+import './play.css'
 
 import { FaMale } from 'react-icons/fa'
 
-class Game extends Component {
+class Play extends Component {
 	state = {
 	}
 
   render() {
     return(
 			<div >
-				This is Game
+				This is play
 			</div>
 		)
 	}
 }
 
-export default Game;
+export default Play;

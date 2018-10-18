@@ -4,7 +4,7 @@ import './App.css'
 import Routes from './routes/routes'
 import Navbar from './components/navbar/navbar'
 import Dashboard from './pages/dashboard/dashboard'
-import Game from './pages/game/game'
+import Play from './pages/play/play'
 import HiScores from './pages/hiScores/hiScores'
 import AddWords from './pages/addWords/addWords'
 
@@ -26,10 +26,11 @@ class App extends Component {
 						title={title}
 					></Navbar>
 
-					<main className="mx-2 my-2">
+					<main className="mx-2 my-2 d-flex justify-content-center vertical-center">
 						<Routes />
 					</main>
 				</div>
+				<footer className="mb-2">Developped by Smail Meziani 🕹</footer>
 			</div>
 		</BrowserRouter>
 		)

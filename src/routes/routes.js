@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Navbar from '../components/navbar/navbar'
 import Dashboard from '../pages/dashboard/dashboard'
-import Game from '../pages/game/game'
+import Play from '../pages/play/play'
 import HiScores from '../pages/hiScores/hiScores'
 import AddWords from '../pages/addWords/addWords'
 
@@ -16,10 +16,12 @@ class Routes extends Component {
   render() {
     return(
 			<Switch>
+				<Route exact path='/' component={Dashboard}/>
 			  <Route exact path='/dashboard' component={Dashboard}/>
-				<Route exact path='/play' component={Game}/>
+				<Route exact path='/play' component={Play}/>
 				<Route exact path='/hi-scores' component={HiScores}/>
 				<Route exact path='/add-words' component={AddWords}/>
+				<Route component={Dashboard}/>
 			</Switch>
 		)
 	}

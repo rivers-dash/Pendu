@@ -20,5 +20,25 @@
 	position: absolute;
 	 top: 0;
 	 bottom: 0;
-	 width: 100%;
+	 width: calc(100% - 10px);
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+  width: 100%;
+  text-align: center;
+	color: #8c8c8c;
+}
+
+main {
+	height: 80%;
 }
