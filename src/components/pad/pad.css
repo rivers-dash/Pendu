@@ -1,0 +1,12 @@
+#container {
+	display: flex;
+}
+
+.a {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	width: 450px;
+	height: auto;
+
+}

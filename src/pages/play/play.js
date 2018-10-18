@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './play.css'
 
+import Pad from '../../components/pad/pad'
+
 import { FaMale } from 'react-icons/fa'
 
 class Play extends Component {
@@ -9,8 +11,9 @@ class Play extends Component {
 
   render() {
     return(
-			<div >
+			<div className='row justify-content-center'>
 				This is play
+				<Pad/>
 			</div>
 		)
 	}
