@@ -7,6 +7,7 @@ class Button extends Component {
 		super(props)
 		this.state = {
 			class: 'btn btn-light mx-1 my-1',
+			isDisabled: false,
 			letter: this.props.letter
 		}
 
@@ -15,7 +16,10 @@ class Button extends Component {
 
 	onButtonClick() {
 		console.log('button', this.state.letter)
-		this.setState({ class: 'btn btn-dark mx-1 my-1' })
+		this.setState({
+			class: 'btn btn-dark mx-1 my-1',
+			isDisabled: true,
+		 })
 		this.props.onButtonClick(this.state.letter)
 	}
 
@@ -23,10 +27,11 @@ class Button extends Component {
 		console.log('hey')
 		//this.props.onBClick(letter)
 	}
-	
+
   render() {
+		const { isDisabled } = this.state
     return (
-			<button className={this.state.class} onClick={this.onButtonClick}>
+			<button className={this.state.class} onClick={this.onButtonClick} disabled={isDisabled}>
 				{this.state.letter}
 			</button>
 		)

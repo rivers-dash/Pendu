@@ -3,12 +3,12 @@ import logger from 'redux-logger'
 import { createLogger } from 'redux-logger'
 
 import { score } from './reducers/scoreReducers'
-import { user } from './reducers/userReducers'
+import { expression } from './reducers/expressionReducers'
 
 // Creating Store and giving it the reducer
 export default createStore(
 	combineReducers({
-		user,
+		expression,
 		score
 	}),
 	{},

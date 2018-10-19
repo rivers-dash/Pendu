@@ -8,13 +8,12 @@ class Expression extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			expression: 'Les americains ne sont pas alles dur la lune'
 		}
 	}
 
 	dispatchExpression(){
-		const { expression } = this.state
-		let exprsn = expression.toUpperCase()
+		const { expression } = this.props
+		let exprsn = expression.value
 		let size = exprsn.length
 		let content = []
 		let spaceIndex
@@ -48,6 +47,7 @@ class Expression extends Component {
 
 Expression.propTypes = {
 	letterClicked: PropTypes.string,
+	expression: PropTypes.object.isRequired,
 }
 
 export default Expression;

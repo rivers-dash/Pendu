@@ -1,10 +1,10 @@
 // Setting up the reducer with action definitions
-export const user = (state = {
-	strikes: 0,
-	hits: 0,
+export const expression = (state = {
+	value: 'Meme les americains comprennent'.toUpperCase(),
+	clue: '',
 }, action) => {
 	switch (action.type) {
-		case 'STRIKE':
+		case 'FETCH_EXPRESSION':
 			state = {
 				...state,
 				strikes: state.strikes + action.payload,
