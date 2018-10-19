@@ -4,7 +4,7 @@ import './App.css'
 import Routes from './routes/routes'
 import Navbar from './components/navbar/navbar'
 
-import { BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 
 class App extends Component {
