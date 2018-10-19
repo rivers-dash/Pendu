@@ -11,6 +11,12 @@ class Letter extends Component {
 		}
 	}
 
+	componentWillReceiveProps(nextProps){
+	  if (nextProps.letterClicked === this.state.value) {
+	    this.setState({ isHidden: false });
+	  }
+	}
+
 	displayLetter() {
 		const { value, isHidden } = this.state
 
@@ -29,6 +35,8 @@ class Letter extends Component {
 		}
 	}
 
+
+
   render() {
     return(this.displayLetter())
 	}
@@ -36,6 +44,7 @@ class Letter extends Component {
 
 Letter.propTypes = {
 	letter: PropTypes.object.isRequired,
+	letterClicked: PropTypes.string,
 }
 
 export default Letter;

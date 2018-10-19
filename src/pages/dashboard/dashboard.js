@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './dashboard.css'
 
-import { FaMale } from 'react-icons/fa'
-import Hangman from '../../utils/images/hangman.svg'
-
 class Dashboard extends Component {
 	state = {
 	}

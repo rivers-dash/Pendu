@@ -2,19 +2,25 @@ import React, { Component } from 'react';
 import './play.css'
 
 import Pad from '../../components/pad/pad'
-import Hidden from '../../components/hidden/hidden'
-
-import { FaMale } from 'react-icons/fa'
+import Expression from '../../components/expression/expression'
 
 class Play extends Component {
-	state = {
+	constructor(props) {
+		super(props)
+		this.state = {
+		}
+	}
+
+	handleButtonClick(letter) {
+		console.log('play', letter)
+		this.setState({ letterClicked: letter})
 	}
 
   render() {
     return(
 			<div className='col justify-content-center'>
-				<Hidden/>
-				<Pad/>
+				<Expression letterClicked={this.state.letterClicked}/>
+				<Pad onButtonClick={this.handleButtonClick.bind(this)}/>
 			</div>
 		)
 	}

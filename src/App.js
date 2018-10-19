@@ -3,12 +3,8 @@ import './App.css'
 
 import Routes from './routes/routes'
 import Navbar from './components/navbar/navbar'
-import Dashboard from './pages/dashboard/dashboard'
-import Play from './pages/play/play'
-import HiScores from './pages/hiScores/hiScores'
-import AddWords from './pages/addWords/addWords'
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter} from 'react-router-dom'
 
 
 class App extends Component {

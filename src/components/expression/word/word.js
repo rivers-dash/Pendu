@@ -8,10 +8,16 @@ class Word extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
+			score: 0,
 		}
 	}
 
-	dispatchWord() {
+	componentDidUpdate() {
+		const { score } = this.state
+		console.log(score)
+	}
+
+	componentWillMount() {
 		const { word } = this.props
 		let letters = []
 		for (let index=0; index<word.length; index++) {
@@ -26,15 +32,32 @@ class Word extends Component {
 			}
 			letters.push(letter)
 		}
-		return letters
+		this.setState({ letters: letters })
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { letters } = this.state
+		letters.map((letter, index) => {
+			if (nextProps.letterClicked === letter.value){
+				let temp = {...letter}
+					temp.isHidden = false
+					this.setState({ [letter]: temp, })
+			}
+			return 0
+		})
 	}
 
   render() {
-		const { word } = this.props
+		const { letters } = this.state
+		const { letterClicked } = this.props
     return(
 			<div className="word d-flex mx-2 my-1">
-				{this.dispatchWord().map((letter, index) => (
-					<Letter key= {index} letter= {letter} />
+				{letters.map((letter, index) => (
+					<Letter
+						key= {index}
+						letter= {letter}
+						letterClicked={letterClicked}
+					 />
 					))}
 			</div>
 		)
@@ -43,6 +66,7 @@ class Word extends Component {
 
 Word.propTypes = {
 	word: PropTypes.string.isRequired,
+	letterClicked: PropTypes.string
 }
 
 export default Word;

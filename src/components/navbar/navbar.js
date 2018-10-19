@@ -17,7 +17,7 @@ class Navbar extends Component {
 
           <h3 className="masthead-brand pt-3 col">
 						<Link to="dashboard" id="appName">
-							<img src={AppName} className="appName"></img>
+							<img alt="" src={AppName} className="appName"></img>
 						</Link>
 					</h3>
 
