@@ -22,7 +22,7 @@ class App extends Component {
 						title={title}
 					></Navbar>
 
-					<main className="mx-2 my-2 d-flex justify-content-center vertical-center">
+					<main className="mx-2 my-2 d-flex justify-content-center">
 						<Routes />
 					</main>
 				</div>

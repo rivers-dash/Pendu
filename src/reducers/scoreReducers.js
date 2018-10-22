@@ -7,8 +7,8 @@ export const score = (state = {
 		case 'STRIKE':
 			state = {
 				...state,
-				strikes: state.strikes + action.payload,
-				hits: state.hits + action.payload
+				strikes: state.strikes + action.payload.strikePoints,
+				hits: state.hits + action.payload.hitPoints
 			}
 			break;
 

@@ -36,7 +36,7 @@ class Expression extends Component {
   render() {
 		const { letterClicked } = this.props
     return(
-			<div className=" d-flex flex-wrap justify-content-center">
+			<div className=" d-flex flex-wrap justify-content-center mb-4">
 				{this.dispatchExpression().map((word, index) => (
 					<Word key= {index} word= {word} letterClicked= {letterClicked}/>
 					))}
