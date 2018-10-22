@@ -1,14 +1,18 @@
-// Setting up the reducer with action definitions
+import Expressions from '../utils/expressions/expressions'
+
+const Expression = Expressions[Math.floor(Math.random() * Math.floor(Expressions.length))]
+
 export const expression = (state = {
-	value: 'Meme les americains comprennent'.toUpperCase(),
-	clue: '',
+	value: Expression.value.toUpperCase(),
+	clue: Expression.clue,
 }, action) => {
 	switch (action.type) {
 		case 'FETCH_EXPRESSION':
+			const Expression = Expressions[Math.floor(Math.random() * Math.floor(Expressions.length))]
 			state = {
 				...state,
-				strikes: state.strikes + action.payload,
-				hits: state.hits + action.payload
+				value: Expression.value.toUpperCase(),
+				clue: Expression.clue,
 			}
 			break;
 

@@ -18,8 +18,6 @@ class Pad extends Component {
 	}
 
 	handleButtonClick(letter) {
-		console.log('pad', letter)
-		console.log(this.props)
 		this.props.onButtonClick(letter)
 	}
 

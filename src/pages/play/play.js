@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './play.css'
 
-import { strike, miss } from '../../actions/scoreActions'
+import { strike, miss, clue } from '../../actions/scoreActions'
 
 import Clue from '../../components/clue/clue'
 import Pad from '../../components/pad/pad'
@@ -26,25 +26,30 @@ class Play extends Component {
 		const { value } = this.props.expression
 		let points = (value.split(letter)).length - 1
 		if (points === 0) {
-			this.props.miss(1)
+			this.props.miss()
 		} else {
-			this.props.strike({ strikePoints: points, hitPoints: 1 })
+			this.props.strike()
 		}
 	}
 
+	onClueClick() {
+		this.props.clue()
+	}
+
   render() {
+		const { score, expression } = this.props
     return(
 			<div className="container">
-			<div id="cell1" className="d-flex row justify-content-between">
+			<div id="cell1" className="d-flex row justify-content-between flex-nowrap">
 
 				<div id="card1" className="justify-content-center">
-					<div class="card text-white bg-dark mb-3">
-					  <div class="card-header card-title">
-							<h1>Score : {this.props.score.strikes}</h1>
-						<h5 class="card-subtitle text-muted">Strikes : {this.props.score.hits}</h5>
+					<div className="card text-white bg-dark mb-3">
+					  <div className="card-header card-title">
+							<h1>Score : {score.strikes}</h1>
+						<h5 className="card-subtitle text-muted">Strikes : {score.hits}</h5>
 					</div>
-						<div class="card-body">
-					    <p class="card-text">
+						<div className="card-body">
+					    <p className="card-text">
 							Every strike is	deducted from your score at the end of the game,
 							the less worng guesses the more the score is high.
 							</p>
@@ -53,7 +58,7 @@ class Play extends Component {
 				</div>
 
 				<div id="card2" className="justify-content-center">
-					<Clue clue="Expression" />
+					<Clue clue={expression.clue} onClueClick={this.onClueClick.bind(this)}/>
 				</div>
 
 			</div>
@@ -76,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		...bindActionCreators({ strike, miss }, dispatch)
+		...bindActionCreators({ strike, miss, clue }, dispatch)
 	}
 }
 

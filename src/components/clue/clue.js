@@ -13,8 +13,9 @@ class Clue extends Component {
 	}
 
 	onClick() {
-		const { clue } = this.props
+		const { clue, onClueClick } = this.props
 		this.setState({ clue: clue})
+		onClueClick()
 	}
 
 	displayClueButton() {
@@ -23,7 +24,7 @@ class Clue extends Component {
 			return (
 				<button
 					type="button"
-					class="btn btn-outline-danger"
+					className="btn btn-outline-danger"
 					onClick={this.onClick}
 				>❓</button>
 			)
@@ -33,17 +34,17 @@ class Clue extends Component {
   render() {
 		const { clue } = this.state
     return (
-			<div class="card text-white bg-dark mb-3">
-				<div class="card-header card-title">
+			<div className="card text-white bg-dark mb-3">
+				<div className="card-header card-title">
 					<h1 className="row justify-content-between">
 						<div className="ml-3"> {clue} </div>
 						{this.displayClueButton()}
 					</h1>
-				<h5 class="card-subtitle text-muted"></h5>
+				<h5 className="card-subtitle text-muted"></h5>
 			</div>
-				<div class="card-body">
-					<p class="card-text">
-					The Clue costs half of your final score.
+				<div className="card-body">
+					<p className="card-text">
+					The Clue lowers your hit values and increases your strikes value.
 					</p>
 				</div>
 			</div>
@@ -53,6 +54,7 @@ class Clue extends Component {
 
 Clue.propTypes = {
 	clue: PropTypes.string.isRequired,
+	onClueClick: PropTypes.func.isRequired,
 }
 
 export default Clue;

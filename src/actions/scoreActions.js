@@ -1,13 +1,17 @@
-export function strike(points) {
+export function strike() {
 	return {
 		type: 'STRIKE',
-		payload: points
 	}
 }
 
-export function miss(points) {
+export function miss() {
 	return {
 		type: 'MISS',
-		payload: points
+	}
+}
+
+export function clue() {
+	return {
+		type: 'CLUE',
 	}
 }
