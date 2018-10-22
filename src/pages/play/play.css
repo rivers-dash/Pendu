@@ -1,0 +1,21 @@
+.container {
+	display: table;
+	min-height: 100%
+}
+
+#cell1 {
+	display: table-row;
+}
+
+#cell2 {
+	display: table-row;
+	min-height: 100%;
+}
+
+#card1 {
+	max-width: 250px;
+}
+
+#card2 {
+	width: auto;
+}
