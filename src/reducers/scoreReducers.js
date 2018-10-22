@@ -1,30 +1,35 @@
-let strikePoints = 10
-let hitPoints = 2
-
-
-export const score = (state = {
+const initialState = {
 	strikes: 0,
 	hits: 0,
+	strikePoints: 10,
+	hitPoints: 2
+}
+
+export const score = (state = {
+	...initialState
 }, action) => {
 	switch (action.type) {
 		case 'STRIKE':
 			state = {
 				...state,
-				strikes: state.strikes + strikePoints,
-				hits: state.hits + hitPoints
+				strikes: state.strikes + state.strikePoints,
+				hits: state.hits + state.hitPoints
 			}
 			break;
 
 		case 'MISS':
 			state = {
 				...state,
-				hits: state.hits + hitPoints
+				hits: state.hits + state.hitPoints
 			}
 			break;
 
 		case 'CLUE':
-			strikePoints = strikePoints/2
-			hitPoints = hitPoints*2
+			state = {
+				...state,
+				strikePoints: state.strikePoints/2,
+				hitPoints: state.hitPoints*2
+			}
 			break;
 
 		default:
