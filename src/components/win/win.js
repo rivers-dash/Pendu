@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './win.css'
 
-
+import { addToRank } from '../../utils/functions/hiScoreFunctions'
 import { resetGame } from '../../actions/hangmanActions'
+
 
 class Win extends Component {
 	constructor(props) {
@@ -26,13 +27,29 @@ class Win extends Component {
 			return (
 	    	<div className="d-flex flex-column align-items-center pt-4">
 					<h1>YOU WON</h1>
-					<button className="btn btn-outline-danger" onClick={this.playAgain}>🕹</button>
+
+					<form>
+					  <div className="form-group">
+					    <label ></label>
+							<div className="d-flex flex-row">
+						    <input type="name" className="form-control mr-2" id="name" aria-describedby="name" placeholder="Enter your name"/>
+								<button type="submit" className="btn btn-outline-success mr-2">
+									<span role="img" aria-label="trophy">🏆</span>
+								</button>
+								<button className="btn btn-outline-danger" onClick={this.playAgain}>
+									<span role="img" aria-label="joystick">🕹</span>
+								</button>
+							</div>
+							<small id="nameHelp" className="form-text text-muted">You are on the top 10, Congrats</small>
+					  </div>
+					</form>
 				</div>
 			)
 		} else {
 			return (
-				<div className="d-flex justify-content-center">
+				<div className="d-flex flex-column align-items-center pt-4">
 					<h1>YOU LOST</h1>
+					<p className="text-muted">wanna try again ?</p>
 					<button className="btn btn-outline-danger" onClick={this.playAgain}>🕹</button>
 				</div>
 			)

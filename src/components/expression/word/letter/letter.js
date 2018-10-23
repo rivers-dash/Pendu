@@ -28,7 +28,6 @@ class Letter extends Component {
 	}
 
   render() {
-		console.log(this.props)
     return(this.displayLetter())
 	}
 }

@@ -8,21 +8,17 @@ class Word extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			score: 0,
 		}
 	}
 
   render() {
-		console.log(this.props)
-		const { letters } = this.state
-		const { letterClicked } = this.props
+		const { word} = this.props
     return(
 			<div className="word d-flex mx-2 my-1">
-				{this.props.word.map((letter, index) => (
+				{word.map((letter, index) => (
 					<Letter
 						key= {index}
 						letter= {letter}
-						letterClicked={letterClicked}
 					 />
 					))}
 			</div>
@@ -31,7 +27,7 @@ class Word extends Component {
 }
 
 Word.propTypes = {
-	word: PropTypes.string.isRequired,
+	word: PropTypes.array.isRequired,
 }
 
 export default Word;

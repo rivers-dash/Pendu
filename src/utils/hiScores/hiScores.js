@@ -1,6 +1,6 @@
-const hiScores = [
+export let hiScores = [
 	{
 		name: 'Vanessa Paradis',
-		score: '1993',
+		score: 1993,
 	}
 ]

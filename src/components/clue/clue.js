@@ -26,7 +26,9 @@ class Clue extends Component {
 					type="button"
 					className="btn btn-outline-danger"
 					onClick={this.onClick}
-				>❓</button>
+				>
+					<span role="img" aria-label="Question mark">❓</span>
+				</button>
 			)
 		}
 	}
@@ -40,7 +42,6 @@ class Clue extends Component {
 						<div className="ml-3"> {clue} </div>
 						{this.displayClueButton()}
 					</h1>
-				<h5 className="card-subtitle text-muted"></h5>
 			</div>
 				<div className="card-body">
 					<p className="card-text">

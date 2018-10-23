@@ -12,11 +12,10 @@ class Expression extends Component {
 	}
 
   render() {
-		console.log(this.props)
-		const { letterClicked } = this.props
+		const { expression } = this.props
     return(
 			<div className=" d-flex flex-wrap justify-content-center mb-4">
-				{this.props.expression.map((word, index) => (
+				{expression.map((word, index) => (
 					<Word key= {index} word= {word} />
 					))}
 			</div>

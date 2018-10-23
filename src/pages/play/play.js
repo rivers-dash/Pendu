@@ -51,7 +51,7 @@ class Play extends Component {
 
 	displayWin() {
 		const { isWin } = this.props.expression
-		const { strikeScore, hitScore } = this.props.score
+		const { strikeScore } = this.props.score
 
 		if (isWin) {
 			return (
