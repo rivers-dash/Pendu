@@ -13,10 +13,6 @@ class Pad extends Component {
 		}
 	}
 
-	componentWillMount() {
-		console.log(this.props)
-	}
-
 	handleButtonClick(letter) {
 		this.props.onButtonClick(letter)
 	}

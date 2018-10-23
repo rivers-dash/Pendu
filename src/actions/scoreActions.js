@@ -15,3 +15,9 @@ export function clue() {
 		type: 'CLUE',
 	}
 }
+
+export function win() {
+	return {
+		type: 'WIN',
+	}
+}

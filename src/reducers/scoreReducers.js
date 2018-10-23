@@ -1,6 +1,5 @@
 const initialState = {
-	strikes: 0,
-	hits: 0,
+	strikeScore: 0,
 	strikePoints: 10,
 	hitPoints: 2
 }
@@ -12,15 +11,14 @@ export const score = (state = {
 		case 'STRIKE':
 			state = {
 				...state,
-				strikes: state.strikes + state.strikePoints,
-				hits: state.hits + state.hitPoints
+				strikeScore: state.strikeScore + state.strikePoints - state.hitPoints,
 			}
 			break;
 
 		case 'MISS':
 			state = {
 				...state,
-				hits: state.hits + state.hitPoints
+				strikeScore: state.strikeScore - state.hitPoints,
 			}
 			break;
 
@@ -31,6 +29,19 @@ export const score = (state = {
 				hitPoints: state.hitPoints*2
 			}
 			break;
+
+			case 'WIN':
+				state = {
+					...state,
+					strikeScore: state.strikeScore - state.hitScore,
+				}
+				break;
+
+			case 'RESET_GAME':
+				state = {
+					...initialState
+				}
+				break;
 
 		default:
 	}

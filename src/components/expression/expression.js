@@ -11,34 +11,13 @@ class Expression extends Component {
 		}
 	}
 
-	dispatchExpression(){
-		const { expression } = this.props
-		let exprsn = expression.value
-		let size = exprsn.length
-		let content = []
-		let spaceIndex
-
-		while (spaceIndex !== -1) {
-			spaceIndex = exprsn.indexOf(' ')
-
-			if (spaceIndex !== -1){
-				content.push(exprsn.slice(0, spaceIndex))
-			} else {
-				content.push(exprsn.slice(0))
-			}
-			exprsn = exprsn.slice(spaceIndex + 1, size)
-		}
-
-		return (content)
-	}
-
-
   render() {
+		console.log(this.props)
 		const { letterClicked } = this.props
     return(
 			<div className=" d-flex flex-wrap justify-content-center mb-4">
-				{this.dispatchExpression().map((word, index) => (
-					<Word key= {index} word= {word} letterClicked= {letterClicked}/>
+				{this.props.expression.map((word, index) => (
+					<Word key= {index} word= {word} />
 					))}
 			</div>
 		)
@@ -46,8 +25,7 @@ class Expression extends Component {
 }
 
 Expression.propTypes = {
-	letterClicked: PropTypes.string,
-	expression: PropTypes.object.isRequired,
+	expression: PropTypes.array.isRequired,
 }
 
 export default Expression;

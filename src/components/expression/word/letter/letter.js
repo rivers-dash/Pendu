@@ -6,19 +6,11 @@ class Letter extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			value: this.props.letter.value,
-			isHidden: this.props.letter.isHidden
 		}
 	}
 
-	componentWillReceiveProps(nextProps){
-	  if (nextProps.letterClicked === this.state.value) {
-	    this.setState({ isHidden: false });
-	  }
-	}
-
 	displayLetter() {
-		const { value, isHidden } = this.state
+		const { value, isHidden } = this.props.letter
 
 		if (isHidden) {
 			return (
@@ -35,16 +27,14 @@ class Letter extends Component {
 		}
 	}
 
-
-
   render() {
+		console.log(this.props)
     return(this.displayLetter())
 	}
 }
 
 Letter.propTypes = {
 	letter: PropTypes.object.isRequired,
-	letterClicked: PropTypes.string,
 }
 
 export default Letter;

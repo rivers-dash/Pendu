@@ -15,17 +15,11 @@ class Button extends Component {
 	}
 
 	onButtonClick() {
-		console.log('button', this.state.letter)
 		this.setState({
 			class: 'btn btn-dark mx-1 my-1',
 			isDisabled: true,
 		 })
 		this.props.onButtonClick(this.state.letter)
-	}
-
-	sendBack(letter) {
-		console.log('hey')
-		//this.props.onBClick(letter)
 	}
 
   render() {
