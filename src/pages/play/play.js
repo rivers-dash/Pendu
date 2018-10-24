@@ -35,8 +35,7 @@ class Play extends Component {
 		if (nextProps.expression.isWin)
 			this.setState({ bgwin: 'card-header card-title bg-danger'})
 		if (this.props.expression.isWin && !nextProps.expression.isWin){
-			console.log('new game : ', this.props.expression.isWin, nextProps.expression.isWin, nextProps.expression.value)
-			this.setState({ expression: nextProps.expression})
+			this.setState({ bgwin: 'card-header card-title', expression: nextProps.expression})
 		}
 	}
 
