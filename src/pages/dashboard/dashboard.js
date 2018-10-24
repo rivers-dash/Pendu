@@ -8,7 +8,7 @@ class Dashboard extends Component {
 
   render() {
     return(
-			<div className="d-flex flex-column text-center ">
+			<div className="d-flex flex-column justify-content-center text-center ">
 
 				<h1 id="title" className="cover-heading text-center">Find the hidden words</h1>
 				<p id="subtitle" className="lead text-center mb-5 w-20">

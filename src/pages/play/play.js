@@ -16,8 +16,19 @@ class Play extends Component {
 		super(props)
 		this.state = {
 			expression: this.props.expression,
-			bgwin: 'card-header card-title'
+			bgwin: 'card-header card-title',
+			transition: 'hidden'
 		}
+		this.onHoverOnInstruction = this.onHoverOnInstruction.bind(this)
+		this.onHoverOutOfInstruction = this.onHoverOutOfInstruction.bind(this)
+	}
+
+	onHoverOnInstruction() {
+		this.setState({ transition: 'card-body visible'})
+	}
+
+	onHoverOutOfInstruction() {
+		this.setState({ transition: 'hidden'})
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -72,15 +83,15 @@ class Play extends Component {
 
 				<div id="card1" className="justify-content-center">
 					<div className="card text-white bg-dark mb-3">
-					  <div className={this.state.bgwin}>
+					  <div className={this.state.bgwin} onMouseOver={this.onHoverOnInstruction} onMouseOut={this.onHoverOutOfInstruction}>
 							<h1>Score : {score.strikeScore}</h1>
-					</div>
-						<div className="card-body">
-					    <p className="card-text">
-							Every wrong guess will cost you {score.hitPoints} points,
-							and a good guess will get you {score.strikePoints - score.hitPoints} points
-							</p>
-					  </div>
+						</div>
+						<div id="scoresInstructions" className={this.state.transition}>
+					    <div className="card-text">
+								Wrong guess will cost you {score.hitPoints} points,
+								and good guess will get you {score.strikePoints - score.hitPoints} points
+							</div>
+						</div>
 					</div>
 				</div>
 
