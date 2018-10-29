@@ -5,7 +5,12 @@ import './play.css'
 
 import { strike, miss, clue, win, letterClick, fetchExpression } from '../../actions'
 
-import { Clue, Pad, Expression, Win } from '../../components'
+import { Clue,
+	Pad,
+	Expression,
+	Win,
+	Spinner
+} from '../../components'
 
 class Play extends Component {
 	constructor(props) {
@@ -110,8 +115,10 @@ class Play extends Component {
 
 		else {
 			return (
-				<div className="container">
-					Chargement ...
+				<div className='row'>
+					<div id="" className='justify-content-center align-self-center'>
+						<Spinner label='Fetching a new expression just for you'/>
+					</div>
 				</div>
 			)
 		}

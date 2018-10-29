@@ -15,3 +15,6 @@ export { default as Pad } from './pad/pad'
 
 // -- win ------------------------------------------------------------------
 export { default as Win } from './win/win'
+
+// -- spinner ------------------------------------------------------------------
+export { default as Spinner } from './spinner/spinner'
