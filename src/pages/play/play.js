@@ -3,8 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './play.css'
 
-import { strike, miss, clue, win } from '../../actions/scoreActions'
-import { letterClick } from '../../actions/expressionActions'
+import { strike, miss, clue, win, letterClick, fetchExpression } from '../../actions'
 
 import Clue from '../../components/clue/clue'
 import Pad from '../../components/pad/pad'
@@ -21,6 +20,10 @@ class Play extends Component {
 		}
 		this.onHoverOnInstruction = this.onHoverOnInstruction.bind(this)
 		this.onHoverOutOfInstruction = this.onHoverOutOfInstruction.bind(this)
+	}
+
+	componentWillMount() {
+		this.props.fetchExpression()
 	}
 
 	onHoverOnInstruction() {
@@ -46,7 +49,7 @@ class Play extends Component {
 	}
 
 	updateScore(letter) {
-		const { value } = this.state.expression
+		const { value } = this.props.expression
 		let points = (value.split(letter)).length - 1
 		if (points === 0) {
 			this.props.miss()
@@ -75,8 +78,9 @@ class Play extends Component {
 	}
 
   render() {
-		const { score } = this.props
-    return(
+		const { score, expression } = this.props
+    if (expression.fetched)
+			return(
 			<div className="container">
 			<div id="cell1" className="d-flex row justify-content-between flex-nowrap">
 
@@ -95,17 +99,25 @@ class Play extends Component {
 				</div>
 
 				<div id="card2" className="justify-content-center">
-					<Clue clue={this.state.expression.clue} onClueClick={this.onClueClick.bind(this)}/>
+					<Clue clue={expression.clue} onClueClick={this.onClueClick.bind(this)}/>
 				</div>
 
 			</div>
 
 			<div id="cell2" className='justify-content-center'>
-				<Expression expression={this.props.expression.letters}/>
+				<Expression expression={expression.letters}/>
 				{this.displayWin()}
 			</div>
 			</div>
 		)
+
+		else {
+			return (
+				<div className="container">
+					Chargement ...
+				</div>
+			)
+		}
 	}
 }
 
@@ -118,7 +130,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		...bindActionCreators({ strike, miss, clue, letterClick, win }, dispatch)
+		...bindActionCreators({
+			strike,
+			miss,
+			clue,
+			letterClick,
+			win,
+			fetchExpression
+		 }, dispatch)
 	}
 }
 

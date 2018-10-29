@@ -1,16 +1,17 @@
-import{ createStore, combineReducers, applyMiddleware } from 'redux'
+import{ createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import axios from 'axios'
 import logger from 'redux-logger'
 import { createLogger } from 'redux-logger'
 
-import { score } from './reducers/scoreReducers'
-import { expression } from './reducers/expressionReducers'
+import reducers from './reducers'
 
 // Creating Store and giving it the reducer
 export default createStore(
-	combineReducers({
-		expression,
-		score
-	}),
+	reducers,
 	{},
-	applyMiddleware(createLogger())
-+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+	compose(
+		applyMiddleware(createLogger(), thunk),
+		window.devToolsExtension ? window.devToolsExtension() : f => f
+	)
+)

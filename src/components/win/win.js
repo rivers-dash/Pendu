@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import './win.css'
 
 import { addToRank } from '../../utils/functions/hiScoreFunctions'
-import { resetGame } from '../../actions/hangmanActions'
+import { resetGame, fetchExpression } from '../../actions'
 
 
 class Win extends Component {
@@ -19,6 +19,7 @@ class Win extends Component {
 
 	playAgain(){
 		this.props.resetGame()
+		this.props.fetchExpression()
 	}
 
   render() {
@@ -68,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		...bindActionCreators({ resetGame }, dispatch)
+		...bindActionCreators({ resetGame, fetchExpression }, dispatch)
 	}
 }
 

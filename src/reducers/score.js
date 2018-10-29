@@ -4,7 +4,7 @@ const initialState = {
 	hitPoints: 2
 }
 
-export const score = (state = {
+const score = (state = {
 	...initialState
 }, action) => {
 	switch (action.type) {
@@ -47,3 +47,5 @@ export const score = (state = {
 	}
 	return state
 }
+
+export default score

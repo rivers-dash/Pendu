@@ -1,27 +1,48 @@
 import Expressions from '../utils/expressions/expressions'
 import { dispatchExpressionToLetters } from '../utils/functions/dispatchExpression'
-
-let Expression = Expressions[Math.floor(Math.random() * Math.floor(Expressions.length))]
+import thunk from 'redux-thunk'
+import axios from 'axios'
+import { createLogger } from 'redux-logger'
+import { applyMiddleware, createStore } from 'redux'
 
 let initialState = {
-	value: Expression.value.toUpperCase(),
-	clue: Expression.clue,
-	letters: dispatchExpressionToLetters(Expression.value.toUpperCase()),
+	fetching: false,
+	fetched: false,
 	isWin: false,
 }
 
-export const expression = (state = {
-	...initialState
-}, action) => {
+const expression = (state = { ...initialState }, action) => {
 	switch (action.type) {
-		case 'FETCH_EXPRESSION':
-			let Expression = Expressions[Math.floor(Math.random() * Math.floor(Expressions.length))]
+
+		case 'FETCH_EXPRESSION': {
 			state = {
 				...state,
-				value: Expression.value.toUpperCase(),
-				clue: Expression.clue,
+				fetching: true,
 			}
 			break;
+		}
+
+		case 'FETCH_EXPRESSION_SUCCESS': {
+			state = {
+				...state,
+				fetching: false,
+				fetched: true,
+				value: action.payload.expression.toUpperCase(),
+				clue: action.payload.clue,
+				letters: dispatchExpressionToLetters(action.payload.expression.toUpperCase()),
+			}
+			break;
+		}
+
+		case 'FETCH_EXPRESSION_ERROR': {
+			state = {
+				...state,
+				fetching: false,
+				fetched: false,
+				error: action.payload
+			}
+			break;
+		}
 
 		case 'LETTER_CLICK':
 		let temp = state.letters
@@ -57,19 +78,14 @@ export const expression = (state = {
 		break;
 
 		case 'RESET_GAME':
-		Expression = Expressions[Math.floor(Math.random() * Math.floor(Expressions.length))]
-		initialState = {
-			value: Expression.value.toUpperCase(),
-			clue: Expression.clue,
-			letters: dispatchExpressionToLetters(Expression.value.toUpperCase()),
-			isWin: false,
+		state = {
+			initialState
 		}
-			state = {
-				...initialState
-			}
 			break;
 
 		default:
 	}
 	return state
 }
+
+export default expression
