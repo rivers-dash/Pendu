@@ -13,6 +13,10 @@ const expression = (state = { ...initialState }, action) => {
 			state = {
 				...state,
 				fetching: true,
+				fetched: false,
+				value: null,
+				clue: null,
+				letters: null,
 			}
 			break;
 		}
@@ -34,7 +38,10 @@ const expression = (state = { ...initialState }, action) => {
 				...state,
 				fetching: false,
 				fetched: false,
-				error: action.payload
+				error: action.payload,
+				value: null,
+				clue: null,
+				letters: null,
 			}
 			break;
 		}
