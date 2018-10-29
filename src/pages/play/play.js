@@ -5,16 +5,12 @@ import './play.css'
 
 import { strike, miss, clue, win, letterClick, fetchExpression } from '../../actions'
 
-import Clue from '../../components/clue/clue'
-import Pad from '../../components/pad/pad'
-import Expression from '../../components/expression/expression'
-import Win from '../../components/win/win'
+import { Clue, Pad, Expression, Win } from '../../components'
 
 class Play extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			expression: this.props.expression,
 			bgwin: 'card-header card-title',
 			transition: 'hidden'
 		}
@@ -35,10 +31,11 @@ class Play extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.expression.isWin)
+		const { isWin } = nextProps.expression
+		if (isWin)
 			this.setState({ bgwin: 'card-header card-title bg-danger'})
-		if (this.props.expression.isWin && !nextProps.expression.isWin){
-			this.setState({ bgwin: 'card-header card-title', expression: nextProps.expression})
+		if (this.props.expression.isWin && !isWin){
+			this.setState({ bgwin: 'card-header card-title' })
 		}
 	}
 
@@ -84,7 +81,7 @@ class Play extends Component {
 			<div className="container">
 			<div id="cell1" className="d-flex row justify-content-between flex-nowrap">
 
-				<div id="card1" className="justify-content-center">
+				<div id="card1" className="justify-content-center mx-2">
 					<div className="card text-white bg-dark mb-3">
 					  <div className={this.state.bgwin} onMouseOver={this.onHoverOnInstruction} onMouseOut={this.onHoverOutOfInstruction}>
 							<h1>Score : {score.strikeScore}</h1>
@@ -98,7 +95,7 @@ class Play extends Component {
 					</div>
 				</div>
 
-				<div id="card2" className="justify-content-center">
+				<div id="card2" className="justify-content-center mx-2">
 					<Clue clue={expression.clue} onClueClick={this.onClueClick.bind(this)}/>
 				</div>
 

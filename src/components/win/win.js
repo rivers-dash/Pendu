@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './win.css'
 
-import { addToRank } from '../../utils/functions/hiScoreFunctions'
 import { resetGame, fetchExpression } from '../../actions'
 
 

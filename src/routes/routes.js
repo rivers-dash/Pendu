@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-
-import Dashboard from '../pages/dashboard/dashboard'
-import Play from '../pages/play/play'
-import HiScores from '../pages/hiScores/hiScores'
-import AddWords from '../pages/addWords/addWords'
-
 import { Switch, Route } from 'react-router-dom'
 
+import { Dashboard, Play, HiScores, AddWords} from '../pages'
 
 class Routes extends Component {
 	state = {

@@ -1,9 +1,4 @@
-import Expressions from '../utils/expressions/expressions'
 import { dispatchExpressionToLetters } from '../utils/functions/dispatchExpression'
-import thunk from 'redux-thunk'
-import axios from 'axios'
-import { createLogger } from 'redux-logger'
-import { applyMiddleware, createStore } from 'redux'
 
 let initialState = {
 	fetching: false,
