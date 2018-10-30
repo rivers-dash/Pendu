@@ -32,9 +32,9 @@ class Navbar extends Component {
 							<div className="justify-content-center col no-wrap text-center">Hi-Scores</div>
 						</Link>
 
-						<Link to="add-words" className="nav-link">
+						<Link to="add-expression" className="nav-link">
 							<FaPlus className="justify-content-center col"/>
-							<div className="justify-content-center col no-wrap text-center">Add words</div>
+							<div className="justify-content-center col no-wrap text-center">Add Expression</div>
 						</Link>
           </nav>
 

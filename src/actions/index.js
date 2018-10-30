@@ -1,8 +1,7 @@
 export {
 letterClick,
 fetchExpression,
-fetchExpressionSuccess,
-fetchExpressionError
+addExpression,
 } from './expression'
 
 export {
