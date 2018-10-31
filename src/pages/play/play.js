@@ -91,7 +91,7 @@ class Play extends Component {
 							  <div className="card-header card-title bg-danger" onMouseOver={this.onHoverOnInstruction} onMouseOut={this.onHoverOutOfInstruction}>
 									<h1>Oops !</h1>
 								</div>
-								<div id="scoresInstructions" className={this.state.transition}>
+								<div className="card-body visible">
 							    <div className="card-text">
 										We couldn't find any expression in database. You may wanna add some in Add Expression section
 									</div>
