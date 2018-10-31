@@ -18,3 +18,6 @@ export { default as Win } from './win/win'
 
 // -- spinner ------------------------------------------------------------------
 export { default as Spinner } from './spinner/spinner'
+
+// -- Contact form ------------------------------------------------------------------
+export { default as AddExpressionForm } from './form/addExpression'

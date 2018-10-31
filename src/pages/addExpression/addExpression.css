@@ -1,0 +1,22 @@
+.emoji {
+		font-size: 150px;
+}
+
+.animate {
+	justify-content: center;
+	text-align: center;
+	opacity: 0;
+	position:relative;
+	animation:mymove 2s ease-out forwards;
+	animation-iteration-count:1;
+
+	/* Safari and Chrome */
+	-webkit-animation:mymove 2s;
+	-webkit-animation-iteration-count:1;
+}
+
+@keyframes mymove {
+	0% {top:50px; opacity: 0;}
+	80% {top:-40px; opacity: 1;}
+	100% {top:-50px; opacity: 0}
+}

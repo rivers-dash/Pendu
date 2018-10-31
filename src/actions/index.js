@@ -1,7 +1,11 @@
 export {
+addExpression,
+addExpressionInit
+} from './addExpression'
+
+export {
 letterClick,
 fetchExpression,
-addExpression,
 } from './expression'
 
 export {

@@ -1,0 +1,8 @@
+textarea {
+	min-height: 80px;
+}
+
+.form {
+	min-width: 300px !important;
+	max-width: 300px !important;
+}
