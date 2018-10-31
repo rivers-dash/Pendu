@@ -81,6 +81,27 @@ class Play extends Component {
 
   render() {
 		const { score, expression } = this.props
+		if (expression.error)
+		if (expression.error.response.status === 404) {
+			return (
+				<div className='row'>
+					<div className='justify-content-center align-self-center'>
+						<div id="card1" className="justify-content-center mx-2">
+							<div className="card text-white bg-dark mb-3">
+							  <div className="card-header card-title bg-danger" onMouseOver={this.onHoverOnInstruction} onMouseOut={this.onHoverOutOfInstruction}>
+									<h1>Oops !</h1>
+								</div>
+								<div id="scoresInstructions" className={this.state.transition}>
+							    <div className="card-text">
+										We couldn't find any expression in database. You may wanna add some in Add Expression section
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			)
+		}
     if (expression.fetched)
 			return(
 			<div className="container">
@@ -116,7 +137,7 @@ class Play extends Component {
 		else {
 			return (
 				<div className='row'>
-					<div id="" className='justify-content-center align-self-center'>
+					<div className='justify-content-center align-self-center'>
 						<Spinner label='Fetching a new expression just for you'/>
 					</div>
 				</div>
