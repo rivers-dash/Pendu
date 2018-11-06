@@ -18,3 +18,8 @@ export {
 	clue,
 	win
 } from './score'
+
+export {
+login,
+logout,
+} from './auth'

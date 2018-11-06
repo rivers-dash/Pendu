@@ -8,4 +8,23 @@
 		flex-flow: row nowrap;
 		min-width: 0;
 		flex-shrink: 0;
-} 
+}
+
+.animate {
+	justify-content: center;
+	text-align: center;
+	opacity: 0;
+	position:relative;
+	animation:mymove 2s ease-out forwards;
+	animation-iteration-count:1;
+
+	/* Safari and Chrome */
+	-webkit-animation:mymove 2s;
+	-webkit-animation-iteration-count:1;
+}
+
+@keyframes mymove {
+	0% {top:20px; opacity: 0;}
+	80% {top:-10px; opacity: 1;}
+	100% {top:-20px; opacity: 0}
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import { Dashboard, Play, HiScores, AddExpression} from '../pages'
+import { Dashboard, Play, HiScores, AddExpression, Profile} from '../pages'
+import ProtectedRoute from './protectedRoute/protectedRoute'
 
 class Routes extends Component {
 	state = {
@@ -12,9 +13,10 @@ class Routes extends Component {
 			<Switch>
 				<Route exact path='/' component={Dashboard}/>
 			  <Route exact path='/dashboard' component={Dashboard}/>
-				<Route exact path='/play' component={Play}/>
-				<Route exact path='/hi-scores' component={HiScores}/>
-				<Route exact path='/add-expression' component={AddExpression}/>
+				<ProtectedRoute path='/play' component={Play}/>
+				<ProtectedRoute path='/hi-scores' component={HiScores}/>
+				<ProtectedRoute path='/add-expression' component={AddExpression}/>
+				<ProtectedRoute path='/profile' component={Profile}/>
 				<Route component={Dashboard}/>
 			</Switch>
 		)

@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './navbar.css'
 
-import { FaMale, FaTrophy ,FaPlus } from 'react-icons/fa'
 import AppName from '../../utils/images/appName.svg'
 
 class Navbar extends Component {
 	state = {
+	}
+
+	displayProfile() {
+		const { auth } = this.props
+		if (auth.logged) {
+			return (
+				<div>
+					<Link to="profile" className="nav-link">
+						<span className="d-flex justify-content-center"
+							role="img" aria-label="adulte"
+						>🧑🏻</span>
+						<div className="justify-content-center col no-wrap text-center">Profile</div>
+					</Link>
+				</div>
+			)
+		} else {
+			return (
+				<div></div>
+			)
+		}
 	}
 
   render() {
@@ -23,19 +43,27 @@ class Navbar extends Component {
 
           <nav className="nav nav-pills pill justify-content-end no-wrap">
             <Link to="play" className="nav-link">
-							<FaMale className="justify-content-center col"/>
+							<span className="d-flex justify-content-center"
+								role="img" aria-label="joystic"
+							>🕹</span>
 							<div className="justify-content-center col no-wrap text-center">Play</div>
 						</Link>
 
 						<Link to="hi-scores" className="nav-link">
-							<FaTrophy className="justify-content-center col"/>
+							<span className="d-flex justify-content-center"
+								role="img" aria-label="trophy"
+							>🏆</span>
 							<div className="justify-content-center col no-wrap text-center">Hi-Scores</div>
 						</Link>
 
 						<Link to="add-expression" className="nav-link">
-							<FaPlus className="justify-content-center col"/>
+							<span className="d-flex justify-content-center"
+								role="img" aria-label="memo"
+							>📝</span>
 							<div className="justify-content-center col no-wrap text-center">Add Expression</div>
 						</Link>
+
+						{this.displayProfile()}
           </nav>
 
         </div>
@@ -45,4 +73,10 @@ class Navbar extends Component {
 	}
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth,
+	}
+}
+
+export default connect(mapStateToProps, undefined)(Navbar);

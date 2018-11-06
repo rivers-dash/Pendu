@@ -1,3 +1,4 @@
+export { default as Profile } from './profile/profile'
 export { default as AddExpression } from './addExpression/addExpression'
 export { default as Dashboard } from './dashboard/dashboard'
 export { default as HiScores } from './hiScores/hiScores'

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 import './App.css'
 
 import Routes from './routes/routes'
 import Navbar from './components/navbar/navbar'
+import { login } from './actions'
 
 import { BrowserRouter } from 'react-router-dom'
 
@@ -11,6 +15,10 @@ class App extends Component {
 	state = {
 		title: 'Hangman'
 	}
+
+	componentDidMount() {
+    this.props.login()
+  }
 
   render() {
 		const { title } = this.state
@@ -33,4 +41,12 @@ class App extends Component {
 	}
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		...bindActionCreators({
+			login,
+		 }, dispatch)
+	}
+}
+
+export default connect(undefined, mapDispatchToProps)(App)
