@@ -4,7 +4,12 @@ export function addExpression(expression) {
 	return function action(dispatch) {
     dispatch({ type: 'ADD_EXPRESSION' })
 
-		axios.post('http://localhost:9001/expression',  {withCredentials: true}, expression)
+		axios({
+			method: 'post',
+		  url: 'http://localhost:9001/api/expression',
+		  data: expression,
+			withCredentials: true,
+		})
 		.then((response) => {
 			dispatch(addExpressionSuccess(response.data))
 			setTimeout(() => (dispatch(addExpressionInit())), 3000)

@@ -11,7 +11,7 @@ export function fetchExpression() {
 	return function action(dispatch) {
     dispatch({ type: 'FETCH_EXPRESSION' })
 
-		axios.get('http://localhost:9001/expression', {withCredentials: true})
+		axios.get('http://localhost:9001/api/expression', {withCredentials: true})
 		.then((response) => {
 			dispatch(fetchExpressionSuccess(response.data))
 		})
