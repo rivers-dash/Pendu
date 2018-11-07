@@ -64,3 +64,45 @@ export function logoutError(error) {
 		payload: error,
 	}
 }
+
+// -- Logout ------------------------------------------------------------------
+
+export function signin(user) {
+	return function action(dispatch) {
+    dispatch({ type: 'SIGNIN' })
+		axios({
+			method: 'post',
+		  url: 'http://localhost:9001/api/signin',
+		  data: user,
+			withCredentials: true,
+		})
+		.then((response) => {
+			dispatch(signinSuccess(response))
+			setTimeout(() => (dispatch(signinInit())), 3000)
+		})
+		.catch((error) => {
+			dispatch(signinError(error))
+			setTimeout(() => (dispatch(signinInit())), 3000)
+		})
+	}
+}
+
+export function signinSuccess(user) {
+	return {
+		type: 'SIGNIN_SUCCESS',
+		payload: user,
+	}
+}
+
+export function signinError(error) {
+	return {
+		type: 'SIGNIN_ERROR',
+		payload: error,
+	}
+}
+
+export function signinInit(error) {
+	return {
+		type: 'SIGNIN_INIT',
+	}
+}

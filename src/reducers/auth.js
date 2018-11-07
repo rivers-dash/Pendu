@@ -2,6 +2,7 @@ let initialState = {
 	logged: false,
 	loging: false,
 	logingOut: false,
+	signingin: false,
 	token: null,
 	user: null,
 	error: null,
@@ -68,6 +69,40 @@ const auth = (state = { ...initialState }, action) => {
 				...state,
 				logingOut: false,
 				error: action.payload,
+			}
+			break;
+		}
+
+		case 'SIGNIN': {
+			state = {
+				...state,
+				signingin: true,
+			}
+			break;
+		}
+
+		case 'SIGNIN_SUCCESS': {
+			state = {
+				...state,
+				signingin: false,
+				user: action.payload,
+			}
+			document.cookie = 'login=; Max-Age=0'
+			break;
+		}
+
+		case 'SIGNIN_ERROR': {
+			state = {
+				...state,
+				signingin: false,
+				error: action.payload,
+			}
+			break;
+		}
+
+		case 'SIGNIN_INIT': {
+			state = {
+				...initialState
 			}
 			break;
 		}

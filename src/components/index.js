@@ -20,5 +20,6 @@ export { default as Win } from './win/win'
 export { default as Spinner } from './spinner/spinner'
 
 // -- Contact form ------------------------------------------------------------------
-export { default as AddExpressionForm } from './form/addExpression'
-export { default as LoginForm } from './form/login'
+export { default as AddExpressionForm } from './form/addExpression/addExpression'
+export { default as LoginForm } from './form/login/login'
+export { default as SigninForm } from './form/signin/signin'

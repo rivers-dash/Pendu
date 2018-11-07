@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './dashboard.css'
 
-import { login, logout } from '../../actions'
-import { LoginForm, Spinner } from '../../components'
+import { login, logout, signin } from '../../actions'
+import { LoginForm, SigninForm, Spinner } from '../../components'
 
 class Dashboard extends Component {
 	constructor(props) {
@@ -15,18 +15,22 @@ class Dashboard extends Component {
 		}
 		this.login = this.login.bind(this)
 		this.loginSubmit = this.loginSubmit.bind(this)
-		this.logout = this.logout.bind(this)
+		this.signin = this.signin.bind(this)
+		this.signinSubmit = this.signinSubmit.bind(this)
 	}
 
 	login() {
 		this.setState({ login: true, signin: false })
 	}
 
+	signin() {
+		this.setState({ login: false, signin: true })
+	}
+
 	loginSubmit() {
 		const { login, loginForm, auth } = this.props
 		login(loginForm.values)
 
-		console.log(auth.loging, auth.logged)
 		if(auth.loging) {
 			this.setState({ login: false, signin: false })
 		}
@@ -37,8 +41,17 @@ class Dashboard extends Component {
 		}
 	}
 
-	signin() {
-		this.setState({ login: false, signin: true })
+	signinSubmit() {
+		const { signin, signinForm, auth } = this.props
+		let user = { ...signinForm.values }
+		delete user.passwordCheck
+		signin(user)
+
+		if(auth.signingin) {
+			this.setState({ login: false, signin: false })
+		} else if (!auth.signingin) {
+			console.log(auth.error)
+		}
 	}
 
 	display() {
@@ -49,6 +62,12 @@ class Dashboard extends Component {
 			return (
 				<div>
 					<Spinner label='Loging'/>
+				</div>
+			)
+		} else if (auth.signingin) {
+			return (
+				<div>
+					<Spinner label='Signing In'/>
 				</div>
 			)
 		} else if (auth.logged) {
@@ -75,7 +94,7 @@ class Dashboard extends Component {
 					> Login </button>
 
 					<button type="button" className="btn btn-outline-danger mx-2 mt-1"
-						onClick={this.logout}
+						onClick={this.signin}
 					> Sign In </button>
 				</div>
 			)
@@ -87,24 +106,26 @@ class Dashboard extends Component {
 			return (
 				<div>
 					<div className="text-danger animate mb-1">{err}</div>
-					<LoginForm onSubmit={this.loginSubmit} serverError={err}/>
+					<LoginForm onSubmit={this.loginSubmit}/>
 				</div>
 			)
 		} else if (!login && signin) {
+			let err = null
+			if (auth.error)
+				if (auth.error.response.data.error)
+					err = auth.error.response.data.error
 			return (
 				<div>
+					<div className="text-danger animate mb-1">{err}</div>
+					<SigninForm onSubmit={this.signinSubmit}/>
 				</div>
 			)
 		}
 	}
 
-	logout() {
-		this.props.logout()
-	}
-
   render() {
 		return (
-			<div className="d-flex flex-column justify-content-center text-center ">
+			<div className="d-flex flex-column justify-content-center text-center">
 				{this.display()}
 			</div>
 		)
@@ -114,6 +135,7 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
 	return {
 		loginForm: state.form.login,
+		signinForm: state.form.signin,
 		auth: state.auth,
 	}
 }
@@ -122,7 +144,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		...bindActionCreators({
 			login,
-			logout
+			logout,
+			signin
 		 }, dispatch)
 	}
 }

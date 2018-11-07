@@ -22,4 +22,5 @@ export {
 export {
 login,
 logout,
+signin,
 } from './auth'
