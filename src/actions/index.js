@@ -25,3 +25,7 @@ logout,
 signin,
 editProfile,
 } from './auth'
+
+export {
+getHiscores
+} from './hiscores'

@@ -37,7 +37,6 @@ class Dashboard extends Component {
 		if(auth.logged) {
 			this.setState({ login: false, signin: false  })
 		} else if (!auth.logged) {
-			console.log(auth.error)
 		}
 	}
 
@@ -50,7 +49,6 @@ class Dashboard extends Component {
 		if(auth.signingin) {
 			this.setState({ login: false, signin: false })
 		} else if (!auth.signingin) {
-			console.log(auth.error)
 		}
 	}
 
