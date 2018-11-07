@@ -3,6 +3,7 @@ let initialState = {
 	loging: false,
 	logingOut: false,
 	signingin: false,
+	editing: false,
 	token: null,
 	user: null,
 	error: null,
@@ -11,7 +12,7 @@ let initialState = {
 
 const auth = (state = { ...initialState }, action) => {
 	switch (action.type) {
-
+// -- LOGIN -------------------------------------------------------------------
 		case 'LOGIN': {
 			state = {
 				...state,
@@ -44,6 +45,14 @@ const auth = (state = { ...initialState }, action) => {
 			break;
 		}
 
+		case 'LOGIN_INIT': {
+			state = {
+				...state,
+				error: null
+			}
+			break;
+		}
+// -- LOGOUT -------------------------------------------------------------------
 		case 'LOGOUT': {
 			state = {
 				...state,
@@ -72,7 +81,7 @@ const auth = (state = { ...initialState }, action) => {
 			}
 			break;
 		}
-
+// -- SIGNIN -----------------------------------------------------------------
 		case 'SIGNIN': {
 			state = {
 				...state,
@@ -87,7 +96,6 @@ const auth = (state = { ...initialState }, action) => {
 				signingin: false,
 				user: action.payload,
 			}
-			document.cookie = 'login=; Max-Age=0'
 			break;
 		}
 
@@ -102,7 +110,43 @@ const auth = (state = { ...initialState }, action) => {
 
 		case 'SIGNIN_INIT': {
 			state = {
-				...initialState
+				...state,
+				error: null,
+			}
+			break;
+		}
+// -- EDIT_PROFILE ------------------------------------------------------------
+		case 'EDIT_PROFILE': {
+			state = {
+				...state,
+				editing: true,
+			}
+			break;
+		}
+
+		case 'EDIT_PROFILE_SUCCESS': {
+			state = {
+				...state,
+				editing: false,
+				token: action.payload.data.token,
+				user: action.payload.data.user,
+			}
+			break;
+		}
+
+		case 'EDIT_PROFILE_ERROR': {
+			state = {
+				...state,
+				editing: false,
+				error: action.payload,
+			}
+			break;
+		}
+
+		case 'EDIT_PROFILE_INIT': {
+			state = {
+				...state,
+				error: null
 			}
 			break;
 		}

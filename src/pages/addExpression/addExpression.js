@@ -51,15 +51,15 @@ class AddExpression extends Component {
 
   render() {
 		return (
-			<div className="">
-				<h1>Add Expression</h1>
+			<div className="d-flex flex-column justify-content-center text-center">
+				{/* <h1>Add Expression</h1>
 				<p>In this section you can add expression to the database so you can
 				play them later in the game.</p>
 				<p>To add an expression, fill the forme below with a valid expression
 				of your choice no longer than 45 characters and give a clue to help
 				desperate players then click the submit button.</p>
 				<p>If the expresion you uploaded already exist in daatabase, you'll
-				have to try again.</p>
+				have to try again.</p> */}
 				<div id="form" className="row justify-content-center">
 					<div className="align-self-center">
 						{this.display()}

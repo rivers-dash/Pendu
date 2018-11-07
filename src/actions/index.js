@@ -23,4 +23,5 @@ export {
 login,
 logout,
 signin,
+editProfile,
 } from './auth'

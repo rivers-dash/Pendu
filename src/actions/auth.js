@@ -11,9 +11,11 @@ export function login(credentials) {
 		})
 		.then((response) => {
 			dispatch(loginSuccess(response))
+			setTimeout(() => (dispatch(loginInit())), 3000)
 		})
 		.catch((error) => {
 			dispatch(loginError(error))
+			setTimeout(() => (dispatch(loginInit())), 3000)
 		})
 	}
 }
@@ -29,6 +31,12 @@ export function loginError(error) {
 	return {
 		type: 'LOGIN_ERROR',
 		payload: error,
+	}
+}
+
+export function loginInit(error) {
+	return {
+		type: 'LOGIN_INIT',
 	}
 }
 
@@ -104,5 +112,47 @@ export function signinError(error) {
 export function signinInit(error) {
 	return {
 		type: 'SIGNIN_INIT',
+	}
+}
+
+// -- Edit Profile ------------------------------------------------------------------
+
+export function editProfile(user) {
+	return function action(dispatch) {
+    dispatch({ type: 'EDIT_PROFILE' })
+		axios({
+			method: 'post',
+		  url: 'http://localhost:9001/api/editOne',
+		  data: user,
+			withCredentials: true,
+		})
+		.then((response) => {
+			dispatch(editProfileSuccess(response))
+			setTimeout(() => (dispatch(editProfileInit())), 3000)
+		})
+		.catch((error) => {
+			dispatch(editProfileError(error))
+			setTimeout(() => (dispatch(editProfileInit())), 3000)
+		})
+	}
+}
+
+export function editProfileSuccess(user) {
+	return {
+		type: 'EDIT_PROFILE_SUCCESS',
+		payload: user,
+	}
+}
+
+export function editProfileError(error) {
+	return {
+		type: 'EDIT_PROFILE_ERROR',
+		payload: error,
+	}
+}
+
+export function editProfileInit(error) {
+	return {
+		type: 'EDIT_PROFILE_INIT',
 	}
 }
