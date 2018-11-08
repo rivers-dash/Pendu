@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './play.css'
 
-import { strike, miss, clue, win, letterClick, fetchExpression } from '../../actions'
+import { strike, miss, clue, win, letterClick, fetchExpression, addHiscore } from '../../actions'
 
 import { Clue,
 	Pad,
@@ -37,10 +37,16 @@ class Play extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const { isWin } = nextProps.expression
-		if (isWin)
+		if (isWin) {
 			this.setState({ bgwin: 'card-header card-title bg-danger'})
+		}
 		if (this.props.expression.isWin && !isWin){
 			this.setState({ bgwin: 'card-header card-title' })
+			this.props.addHiscore({
+				userId: this.props.auth.user.id,
+				expressionId: this.props.expression.id,
+				score: this.props.score.strikeScore,
+			})
 		}
 	}
 
@@ -149,7 +155,8 @@ class Play extends Component {
 const mapStateToProps = (state) => {
 	return {
 		score: state.score,
-		expression: state.expression
+		expression: state.expression,
+		auth: state.auth
 	}
 }
 
@@ -161,7 +168,8 @@ const mapDispatchToProps = (dispatch) => {
 			clue,
 			letterClick,
 			win,
-			fetchExpression
+			fetchExpression,
+			addHiscore
 		 }, dispatch)
 	}
 }

@@ -31,16 +31,12 @@ class Win extends Component {
 					<form>
 					  <div className="form-group">
 					    <label ></label>
-							<div className="d-flex flex-row">
-						    <input type="name" className="form-control mr-2" id="name" aria-describedby="name" placeholder="Enter your name"/>
-								<button type="submit" className="btn btn-outline-success mr-2">
+							<div className="d-flex flex-row justify-content-center">
+								<button className="btn btn-outline-danger" onClick={this.playAgain}>
 									<span role="img" aria-label="trophy">🏆</span>
 								</button>
-								<button className="btn btn-outline-danger" onClick={this.playAgain}>
-									<span role="img" aria-label="joystick">🕹</span>
-								</button>
 							</div>
-							<small id="nameHelp" className="form-text text-muted">You are on the top 10, Congrats</small>
+							<small id="nameHelp" className="form-text text-muted">Save my score</small>
 					  </div>
 					</form>
 				</div>

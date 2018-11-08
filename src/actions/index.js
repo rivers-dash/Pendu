@@ -27,5 +27,6 @@ editProfile,
 } from './auth'
 
 export {
-getHiscores
+getHiscores,
+addHiscore
 } from './hiscores'

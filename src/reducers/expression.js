@@ -26,6 +26,7 @@ const expression = (state = { ...initialState }, action) => {
 				...state,
 				fetching: false,
 				fetched: true,
+				id: action.payload.id,
 				value: action.payload.expression.toUpperCase(),
 				clue: action.payload.clue,
 				letters: dispatchExpressionToLetters(action.payload.expression.toUpperCase()),
