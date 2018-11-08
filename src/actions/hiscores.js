@@ -2,10 +2,10 @@ import axios from 'axios'
 
 export function getHiscores() {
 	return function action(dispatch) {
-    dispatch({ type: 'GET_HISCORES' })
+    dispatch({ type: 'FETCH_HISCORES' })
 		axios({
 			method: 'get',
-		  url: 'http://localhost:9001/api/hiscores',
+		  url: 'http://localhost:9001/api/scores',
 			withCredentials: true,
 		})
 		.then((response) => {
@@ -20,20 +20,20 @@ export function getHiscores() {
 
 export function getHiscoresSuccess(hiscores) {
 	return {
-		type: 'GET_HISCORES_SUCCESS',
+		type: 'FETCH_HISCORES_SUCCESS',
 		payload: hiscores,
 	}
 }
 
 export function getHiscoresError(error) {
 	return {
-		type: 'GET_HISCORES_ERROR',
+		type: 'FETCH_HISCORES_ERROR',
 		payload: error,
 	}
 }
 
 export function getHiscoresInit() {
 	return {
-		type: 'GET_HISCORES_INIT',
+		type: 'FETCH_HISCORES_INIT',
 	}
 }

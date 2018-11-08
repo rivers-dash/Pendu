@@ -33,7 +33,9 @@ const auth = (state = { ...initialState }, action) => {
 			break;
 		}
 
-		case 'LOGIN_ERROR': {
+		case 'LOGIN_ERROR':
+		case 'FETCH_EXPRESSION_ERROR':
+		case 'FETCH_HISCORES_ERROR':
 			state = {
 				...state,
 				loging: false,
@@ -43,7 +45,7 @@ const auth = (state = { ...initialState }, action) => {
 				error: action.payload,
 			}
 			break;
-		}
+
 
 		case 'LOGIN_INIT': {
 			state = {

@@ -7,7 +7,7 @@ let initialState = {
 const hiscores= (state = { ...initialState }, action) => {
 	switch (action.type) {
 
-		case 'GET_HISCORES': {
+		case 'FETCH_HISCORES': {
 			state = {
 				...state,
 				fetching: true,
@@ -17,7 +17,7 @@ const hiscores= (state = { ...initialState }, action) => {
 			break;
 		}
 
-		case 'GET_HISCORES_SUCCESS': {
+		case 'FETCH_HISCORES_SUCCESS': {
 			state = {
 				...state,
 				fetching: false,
@@ -27,7 +27,7 @@ const hiscores= (state = { ...initialState }, action) => {
 			break;
 		}
 
-		case 'GET_HISCORES_ERROR': {
+		case 'FETCH_HISCORES_ERROR': {
 			state = {
 				...state,
 				fetching: false,
