@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import './dashboard.css'
 
 import { login, logout, signin } from '../../actions'
@@ -99,7 +100,12 @@ class Dashboard extends Component {
 		} else if (login && ! signin) {
 			let err = null
 			if (auth.error)
-				if (auth.error.response.data.error)
+				if(!auth.error.response){
+					return (
+						<Redirect to='/fiveOhThree' />
+					)
+				}
+				else if (auth.error.response.data.error)
 					err = auth.error.response.data.error
 			return (
 				<div>

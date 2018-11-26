@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 
-import { Dashboard, Play, HiScores, AddExpression, Profile} from '../pages'
+import { Dashboard, Play, HiScores, AddExpression, Profile, FiveOhThree} from '../pages'
 import ProtectedRoute from './protectedRoute/protectedRoute'
 
 class Routes extends Component {
@@ -17,6 +17,7 @@ class Routes extends Component {
 				<ProtectedRoute path='/hi-scores' component={HiScores}/>
 				<ProtectedRoute path='/add-expression' component={AddExpression}/>
 				<ProtectedRoute path='/profile' component={Profile}/>
+				<Route exact path='/fiveOhThree' component={FiveOhThree}/>
 				<Route component={Dashboard}/>
 			</Switch>
 		)
